@@ -1,0 +1,100 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'requirejs/text' ]
+2 info using npm@2.14.12
+3 info using node@v4.2.4
+4 verbose install initial load of D:\дела\OSTD labs\test\src\main\webapp\package.json
+5 warn package.json bankaccount@1.0.0 No repository field.
+6 warn package.json bankaccount@1.0.0 No README data
+7 verbose installManyTop reading scoped package data from D:\дела\OSTD labs\test\src\main\webapp\node_modules\backbone\package.json
+8 verbose installManyTop reading scoped package data from D:\дела\OSTD labs\test\src\main\webapp\node_modules\jquery\package.json
+9 verbose installManyTop reading scoped package data from D:\дела\OSTD labs\test\src\main\webapp\node_modules\requirejs\package.json
+10 verbose installManyTop reading scoped package data from D:\дела\OSTD labs\test\src\main\webapp\node_modules\underscore\package.json
+11 info package.json jquery@2.1.4 No license field.
+12 info package.json requirejs@2.1.22 No license field.
+13 verbose readDependencies loading dependencies from D:\дела\OSTD labs\test\src\main\webapp\package.json
+14 silly cache add args [ 'requirejs/text', null ]
+15 verbose cache add spec requirejs/text
+16 silly cache add parsed spec Result {
+16 silly cache add   raw: 'requirejs/text',
+16 silly cache add   scope: null,
+16 silly cache add   name: null,
+16 silly cache add   rawSpec: 'requirejs/text',
+16 silly cache add   spec: 'github:requirejs/text',
+16 silly cache add   type: 'hosted',
+16 silly cache add   hosted:
+16 silly cache add    { type: 'github',
+16 silly cache add      ssh: 'git@github.com:requirejs/text.git',
+16 silly cache add      sshUrl: 'git+ssh://git@github.com/requirejs/text.git',
+16 silly cache add      httpsUrl: 'git+https://github.com/requirejs/text.git',
+16 silly cache add      gitUrl: 'git://github.com/requirejs/text.git',
+16 silly cache add      shortcut: 'github:requirejs/text',
+16 silly cache add      directUrl: 'https://raw.githubusercontent.com/requirejs/text/master/package.json' } }
+17 verbose addRemoteGit caching requirejs/text
+18 verbose addRemoteGit requirejs/text is a repository hosted by github
+19 silly tryGitProto attempting to clone git://github.com/requirejs/text.git
+20 silly tryClone cloning requirejs/text via git://github.com/requirejs/text.git
+21 verbose tryClone git-github-com-requirejs-text-git-a4388600 not in flight; caching
+22 warn addRemoteGit Error: not found: git
+22 warn addRemoteGit     at F (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:78:19)
+22 warn addRemoteGit     at E (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:82:29)
+22 warn addRemoteGit     at C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:93:16
+22 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:82:15)
+22 warn addRemoteGit  requirejs/text resetting remote C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600 because of error: { [Error: not found: git] code: 'ENOGIT' }
+23 info resetRemote resetting C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600 for requirejs/text
+24 silly gentlyRm C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600 is being purged
+25 verbose gentlyRm don't care about contents; nuking C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600
+26 silly vacuum-fs purging C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600
+27 silly vacuum-fs quitting because other entries in C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes
+28 error git clone --template=C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git://github.com/requirejs/text.git C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600: undefined
+28 error git clone --template=C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git://github.com/requirejs/text.git C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-a4388600: undefined
+29 silly tryHTTPS attempting to clone git+https://github.com/requirejs/text.git
+30 silly tryClone cloning requirejs/text via git+https://github.com/requirejs/text.git
+31 verbose tryClone https-github-com-requirejs-text-git-da477421 not in flight; caching
+32 warn addRemoteGit Error: not found: git
+32 warn addRemoteGit     at F (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:78:19)
+32 warn addRemoteGit     at E (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:82:29)
+32 warn addRemoteGit     at C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:93:16
+32 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:82:15)
+32 warn addRemoteGit  requirejs/text resetting remote C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421 because of error: { [Error: not found: git] code: 'ENOGIT' }
+33 info resetRemote resetting C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421 for requirejs/text
+34 silly gentlyRm C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421 is being purged
+35 verbose gentlyRm don't care about contents; nuking C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421
+36 silly vacuum-fs purging C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421
+37 silly vacuum-fs quitting because other entries in C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes
+38 error git clone --template=C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror https://github.com/requirejs/text.git C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421: undefined
+38 error git clone --template=C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror https://github.com/requirejs/text.git C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\https-github-com-requirejs-text-git-da477421: undefined
+39 silly trySSH attempting to clone git@github.com:requirejs/text.git
+40 silly tryClone cloning requirejs/text via git@github.com:requirejs/text.git
+41 verbose tryClone git-github-com-requirejs-text-git-90d80742 not in flight; caching
+42 warn addRemoteGit Error: not found: git
+42 warn addRemoteGit     at F (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:78:19)
+42 warn addRemoteGit     at E (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:82:29)
+42 warn addRemoteGit     at C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:93:16
+42 warn addRemoteGit     at FSReqWrap.oncomplete (fs.js:82:15)
+42 warn addRemoteGit  requirejs/text resetting remote C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742 because of error: { [Error: not found: git] code: 'ENOGIT' }
+43 info resetRemote resetting C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742 for requirejs/text
+44 silly gentlyRm C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742 is being purged
+45 verbose gentlyRm don't care about contents; nuking C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742
+46 silly vacuum-fs purging C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742
+47 silly vacuum-fs quitting because other entries in C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes
+48 error git clone --template=C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:requirejs/text.git C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742: undefined
+48 error git clone --template=C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:requirejs/text.git C:\Users\ZhukovV\AppData\Roaming\npm-cache\_git-remotes\git-github-com-requirejs-text-git-90d80742: undefined
+49 verbose stack Error: not found: git
+49 verbose stack     at F (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:78:19)
+49 verbose stack     at E (C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:82:29)
+49 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\which\which.js:93:16
+49 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+50 verbose cwd D:\дела\OSTD labs\test\src\main\webapp
+51 error Windows_NT 10.0.10586
+52 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "requirejs/text"
+53 error node v4.2.4
+54 error npm  v2.14.12
+55 error code ENOGIT
+56 error not found: git
+57 error Failed using git.
+57 error This is most likely not a problem with npm itself.
+57 error Please check if you have git installed and in your PATH.
+58 verbose exit [ 1, true ]
