@@ -11,7 +11,7 @@ define([
 	var PersonalDataView = Backbone.View.extend({
 
 		//tagName:  'li',
-		el: '#data-container',
+		//el: '#data-fieldset',
 
 		template: _.template(personalDataTpl),
 

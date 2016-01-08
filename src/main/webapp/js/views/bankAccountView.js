@@ -4,13 +4,12 @@ define([
 	'underscore',
 	'backbone',
 	'text!../../templates/layouts/bankAccountTpl.html',
-	'models/bankAccountModel'
-], function($, _, Backbone, bankAccountTpl, BankAccountModel) {
+], function($, _, Backbone, bankAccountTpl) {
 	'use strict';
 	var BankAccountView = Backbone.View.extend({
 
 		//tagName: 'li',
-		el: '#accounts-container',
+		el: '#accounts-list',
 
 		template: _.template(bankAccountTpl),
 
@@ -21,15 +20,15 @@ define([
 		},
 
 		initialize: function() {
-			this.model = new BankAccountModel();
 			this.listenTo(this.model, 'change', this.render);
 		},
 
 		render: function() {
-			console.log(this.$el);
+			console.log(this.model.toJSON());
 			this.$el.append(this.template(this.model.toJSON()));
 			return this;
 		},
+
 		edit: function() {
 			this.model.set({
 				iban: this.$('#iban').text(),
@@ -39,5 +38,6 @@ define([
 			});
 		},
 	});
+
 	return BankAccountView;
 });

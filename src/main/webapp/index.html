@@ -9,12 +9,17 @@
 <body>
 	<section id="app-container">
 		<div id="data-container">
+			<div id="data-fieldset"></div>
+			<input type="button" id="data-next" value="Next">
 		</div>
-		<div id="accounts-container">
+
+		<div id="accounts-container" hidden>
+			<ul id="accounts-list"></ul>
+			<input type="button" id="accounts-add" value="Add account">
+			<input type="button" id="accounts-save" value="Save">
 		</div>
-		<input type="button" id="saveData" value="Save">
-		<input type="button" id="addAccount" value="Add account">
-		<div id="success" hidden>
+
+		<div id="success-container" hidden>
 			Success
 		</div>
 	</section>

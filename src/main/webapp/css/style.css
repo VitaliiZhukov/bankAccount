@@ -2,3 +2,5 @@ html,body{text-align: center;font-family:Helvetica;}
 .inputBlock{display:block;padding:10px 0 10px 0;}
 .personalData-container{display:inline-block;}
 .bankAccount-container{display:inline-block;}
+#accounts-list{list-style-type: none;}
+#accounts-list ul{display:inline-block;}

@@ -8,7 +8,7 @@ define([
 	var BankAccount = Backbone.Model.extend({
 		// Default attributes for bank account data
 		defaults: {
-			id: '',
+			order: 1,
 			iban: '',
 			bic: ''
 		},
@@ -22,6 +22,11 @@ define([
 			if (!this.get('bic')) {
 				this.set({
 					'bic': this.defaults.bic
+				});
+			}
+			if (!this.get('order')) {
+				this.set({
+					'order': this.defaults.order
 				});
 			}
 		},
