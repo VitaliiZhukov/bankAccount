@@ -1,13 +1,15 @@
 <fieldset class="bankAccount-container">
 	<legend>Bank Account: <%- order %></legend>
-	<div class="inputBlock">
+	<div class="inputBlock form-group" id="iban-container">
 		<label for="iban">IBAN</label>
-		<input type="text" id="account-iban" value="<%- iban %>"/>
+		<input type="text" id="iban" value="<%- iban %>" class="form-control"/>
+		<span id="iban-error" class="error"></span>
 	</div>
 
-	<div class="inputBlock">
+	<div class="inputBlock form-group" id="bic-container">
 		<label for="bic">BIC</label>
-		<input type="text" id="account-bic" value="<%- bic %>"/>
+		<input type="text" id="bic" value="<%- bic %>" class="form-control"/>
+		<span id="bic-error" class="error"></span>
 	</div>
-	<input type="button" id="account-delete" value="Delete"/>
+	<input type="button" id="account-delete" value="Delete" class="btn btn-default"/>
 </fieldset>

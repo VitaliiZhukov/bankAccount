@@ -12,33 +12,15 @@ define([
 
 		template: _.template(personalDataTpl),
 
-		// The DOM events specific to an item.
-		events: {
-			'blur #firstName': 'edit',
-			'blur #lastName': 'edit',
-			'blur #dateOfBirth': 'edit'
-		},
-
 		initialize: function() {
 			this.model = new PersonalDataModel();
-			this.listenTo(this.model, 'change', this.render);
+			//this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'invalid', this.showErrors);
 		},
 
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
-		},
-
-		edit: function() {
-			// this.model.set({
-			// 	firstName: this.$('#firstName').val(),
-			// 	lastName: this.$('#lastName').val(),
-			// 	dateOfBirth: this.$('#dateOfBirth').val()
-			// }, {
-			// 	validate: true
-			// });
-			//if (!res) this.render();
 		},
 
 		submitData: function(e) {
@@ -59,13 +41,13 @@ define([
 
 		showErrors: function(errors) {
 			_.each(errors.validationError, function(error) {
-				//this.$('#'+error.name+'-error').text(error.message);
+				this.$('#'+error.name+'-error').text(error.message);
 				this.$('#' + error.name + '-container').addClass('has-error');
 			}, this);
 		},
 
 		hideErrors: function() {
-			//this.$('.error').text('');
+			this.$('.error').text('');
 			this.$('.inputBlock').removeClass('has-error');
 		}
 	});

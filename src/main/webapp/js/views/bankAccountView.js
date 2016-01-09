@@ -14,14 +14,15 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			'blur #account-iban': 'edit',
-			'blur #account-bic': 'edit',
+			'blur #iban': 'editAccount',
+			'blur #bic': 'editAccount',
 			'click #account-delete': 'deleteAccount',
 		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
+			//this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove); //remove this view after model destroying
+			this.listenTo(this.model, 'invalid', this.showErrors);
 		},
 
 		render: function() {
@@ -29,13 +30,26 @@ define([
 			return this.$el;
 		},
 
-		edit: function() {
+		editAccount: function() {
+			this.hideErrors();
 			this.model.set({
-				iban: this.$('#iban').text(),
-				bic: this.$('#bic').text(),
+				iban: this.$('#iban').val(),
+				bic: this.$('#bic').val()
 			}, {
 				validate: true
 			});
+		},
+
+		showErrors: function(errors) {
+			_.each(errors.validationError, function(error) {
+				this.$('#'+error.name+'-error').text(error.message);
+				this.$('#' + error.name + '-container').addClass('has-error');
+			}, this);
+		},
+
+		hideErrors: function() {
+			this.$('.error').text('');
+			this.$('.inputBlock').removeClass('has-error');
 		},
 
 		deleteAccount: function() {

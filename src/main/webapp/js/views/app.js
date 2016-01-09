@@ -5,18 +5,16 @@ define([
 	'views/personalDataView',
 	'views/bankAccountView',
 	'routers/router',
-	'models/appState',
 	'collections/bankAccountCollection'
-], function(Backbone, $, _, PersonalDataView, BankAccountView, Router, AppState, BankAccountCollection) {
+], function(Backbone, $, _, PersonalDataView, BankAccountView, Router, BankAccountCollection) {
 	var App = Backbone.View.extend({
 
 		el: '#app-container',
 
-		templates: {
-			//"start": _.template('#data-fieldse'),
-			'next': _.template($('#accounts-container').html()),
-			'success': _.template($('#success-container').html()),
-		},
+		// templates: {
+		// 	'success': _.template($('#success-container').html()),
+		// },
+		successTemplate: _.template($('#success-container').html()),
 
 		events: {
 			'click #data-next': 'moveNext',
@@ -35,42 +33,29 @@ define([
 			this.listenTo(this.accCollection, 'add', this.addViewAccount);
 			//this.listenTo(this.accCollection, 'remove', this.);
 
-			this.appState = new AppState();
 			this.router = new Router(this.appState);
 		},
 
 		moveNext: function(e) {
 			if (this.personalData.submitData(e)) {
-				this.appState.set({
-					'state': 'next'
-				});
-				this.$el.html(this.templates['next']());
+				this.$el.html(_.template($('#accounts-container').html()));
 				this.$accounts = this.$('#accounts-list');
 				this.addAccount();
 			}
 		},
 
 		save: function() {
-			this.appState.set({
-				'state': 'success'
-			});
-			this.render();
-		},
-
-		render: function() {
-			var state = this.appState.get('state');
-			if (state === 'success') {
-				this.$el.html(this.templates['success']());
+			if (this.accCollection.checkValidAccounts()) {
+				this.$el.html(this.successTemplate);
 			}
-			console.log('Collection length: ' + this.accCollection.length);
-			return this;
 		},
 
 		addAccount: function() {
-			this.accCollection.add({
-				order: (this.accCollection.length + 1)
-			});
-			console.log(this.accCollection.toJSON());
+			if (this.accCollection.checkValidAccounts()) {
+				this.accCollection.add({
+					order: (this.accCollection.nextOrder())
+				});
+			}
 		},
 
 		addViewAccount: function(acc) {

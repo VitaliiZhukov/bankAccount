@@ -1,15 +1,11 @@
 html,body{text-align: center;font-family:Helvetica;}
-.inputBlock{display:block;padding:10px 0 10px 0;}
+.inputBlock{display:block;}
 .personalData-container{display:inline-block;}
 .bankAccount-container{display:inline-block;}
-#accounts-list{list-style-type: none;}
-#accounts-list ul{display:inline-block;}
-label{text-align: right;}
-span{float:right;font-size:10px;}
-input[type="text"],input[type="date"]{float: right;}
-fieldset {
+#accounts-list li{display:inline-block;margin:20px; padding: 20px; border: solid 1px;border-color:Lavender;
 -webkit-border-radius: 4px;
 -moz-border-radius: 4px;
 border-radius: 4px;
-padding:10px;
 }
+span{font-size:10px;}
+input[type="text"],input[type="date"]{text-align:center;}
