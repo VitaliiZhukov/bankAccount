@@ -8,24 +8,43 @@ define([
 	var PersonalData = Backbone.Model.extend({
 		// Default attributes for personal data
 		defaults: {
-			firstName: 'Johny',
-			lastName: 'Bravo',
-			dateOfBirth: '01.04.1987',
-			fieldsValid: true
+			firstName: '',
+			lastName: '',
+			dateOfBirth: ''
 		},
 
+		fieldsValid: false,
+
 		validate: function(attrs) {
-			this.set({'fieldsValid':false});			
-			if (!attrs.firstName) {
-				return 'First name is empty!';
+			var errors = [];
+			this.fieldsValid = false;
+
+			var nameRe = /^[a-zA-Z ]+$/,
+				dateRe = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
+				//dateRe = ^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$;
+
+			var firstNameIsValid = (!!attrs.firstName) && (nameRe.test(attrs.firstName));
+			var lastNameIsValid = (!!attrs.lastName) && (nameRe.test(attrs.lastName));
+			var dateOfBirthIsValid = dateRe.test(attrs.dateOfBirth);
+
+			if (!firstNameIsValid){
+				errors.push({name:'firstName',message:'Please fill name correctly.'});
 			}
-			if (!attrs.lastName) {
-				return 'Last name is empty!';
+
+			if (!lastNameIsValid){
+				errors.push({name:'lastName',message:'Please fill last name correctly.'});
 			}
-			if (!attrs.dateOfBirth) {
-				return 'Date of birth is empty!';
+
+			if (!dateOfBirthIsValid){
+				errors.push({name:'dateOfBirth',message:'Please fill date of birth correctly.'});
 			}
-			this.set({'fieldsValid':true});
+
+			this.fieldsValid = firstNameIsValid && lastNameIsValid && dateOfBirthIsValid;
+			return errors.length > 0 ? errors : false;
+
+			// if (!this.fieldsValid) {
+			// 	return 'Invalid values!';
+			// }
 		}
 	});
 

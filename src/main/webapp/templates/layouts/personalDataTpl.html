@@ -1,17 +1,20 @@
 <fieldset class="personalData-container">
 	<legend>Personal Data</legend>
-	<div class="inputBlock">
+	<div class="inputBlock form-group" id="firstName-container">
 		<label for="firstName">First name</label>
-		<input type="text" id="firstName" class="firstName" value="<%- firstName %>"/>
+		<span id="firstName-error" class="error"></span>
+		<input type="text" id="firstName" class="firstName form-control" value="<%- firstName %>"/>
 	</div>
 
-	<div class="inputBlock">
+	<div class="inputBlock form-group" id="lastName-container">
 		<label for="lastName">Last name</label>
-		<input type="text" id="lastName" class="lastName" value="<%- lastName %>"/>
+		<span id="lastName-error" class="error"></span>
+		<input type="text" id="lastName" class="lastName form-control" value="<%- lastName %>"/>
 	</div>
 
-	<div class="inputBlock">
+	<div class="inputBlock form-group" id="dateOfBirth-container">
 		<label for="dateOfBirth">Date of birth</label>
-		<input type="date" id="dateOfBirth" class="dateOfBirth" value="<%- dateOfBirth %>"/>
+		<span id="dateOfBirth-error" class="error"></span>
+		<input type="date" id="dateOfBirth" class="dateOfBirth form-control" value="<%- dateOfBirth %>" placeholder="dd/mm/yyyy"/>
 	</div>
 </fieldset>

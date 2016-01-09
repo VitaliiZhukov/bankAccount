@@ -4,3 +4,12 @@ html,body{text-align: center;font-family:Helvetica;}
 .bankAccount-container{display:inline-block;}
 #accounts-list{list-style-type: none;}
 #accounts-list ul{display:inline-block;}
+label{text-align: right;}
+span{float:right;font-size:10px;}
+input[type="text"],input[type="date"]{float: right;}
+fieldset {
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+padding:10px;
+}

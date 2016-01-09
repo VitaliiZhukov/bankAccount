@@ -13,6 +13,8 @@ define([
 			bic: ''
 		},
 
+		fieldsValid: false,
+
 		initialize: function() {
 			if (!this.get('iban')) {
 				this.set({
@@ -30,6 +32,18 @@ define([
 				});
 			}
 		},
+
+		validate: function(attrs) {
+			this.fieldsValid = false;
+			var ibanRe = /[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}/,
+				bicRe = /([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)/;
+
+			var ibanIsValid = ibanRe.test(attrs.iban);
+			var bicIsValid = bicRe.test(attrs.bic);
+
+			this.fieldsValid = ibanIsValid && bicIsValid;
+		}
+
 	});
 
 	return BankAccount;

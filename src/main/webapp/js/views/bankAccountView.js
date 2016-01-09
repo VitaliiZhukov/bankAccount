@@ -8,25 +8,25 @@ define([
 	'use strict';
 	var BankAccountView = Backbone.View.extend({
 
-		//tagName: 'li',
-		el: '#accounts-list',
+		tagName: 'li',
 
 		template: _.template(bankAccountTpl),
 
 		// The DOM events specific to an item.
 		events: {
-			'blur #iban': 'edit',
-			'blur #bic': 'edit',
+			'blur #account-iban': 'edit',
+			'blur #account-bic': 'edit',
+			'click #account-delete': 'deleteAccount',
 		},
 
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
+			this.listenTo(this.model, 'destroy', this.remove); //remove this view after model destroying
 		},
 
 		render: function() {
-			console.log(this.model.toJSON());
-			this.$el.append(this.template(this.model.toJSON()));
-			return this;
+			this.$el.html(this.template(this.model.toJSON()));
+			return this.$el;
 		},
 
 		edit: function() {
@@ -37,6 +37,10 @@ define([
 				validate: true
 			});
 		},
+
+		deleteAccount: function() {
+			this.model.destroy();
+		}
 	});
 
 	return BankAccountView;

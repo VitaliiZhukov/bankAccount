@@ -5,13 +5,10 @@ define([
 	'backbone',
 	'text!../../templates/layouts/personalDataTpl.html',
 	'models/personalDataModel'
-], function($, _, Backbone, personalDataTpl,PersonalDataModel) {
+], function($, _, Backbone, personalDataTpl, PersonalDataModel) {
 	'use strict';
 
 	var PersonalDataView = Backbone.View.extend({
-
-		//tagName:  'li',
-		//el: '#data-fieldset',
 
 		template: _.template(personalDataTpl),
 
@@ -22,33 +19,55 @@ define([
 			'blur #dateOfBirth': 'edit'
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function() {
 			this.model = new PersonalDataModel();
 			this.listenTo(this.model, 'change', this.render);
-			console.log('data created');
+			this.listenTo(this.model, 'invalid', this.showErrors);
 		},
 
-		// Re-render the titles of the todo item.
 		render: function() {
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 		},
 
-		// Switch this view into `"editing"` mode, displaying the input field.
 		edit: function() {
-			this.model.set({
+			// this.model.set({
+			// 	firstName: this.$('#firstName').val(),
+			// 	lastName: this.$('#lastName').val(),
+			// 	dateOfBirth: this.$('#dateOfBirth').val()
+			// }, {
+			// 	validate: true
+			// });
+			//if (!res) this.render();
+		},
+
+		submitData: function(e) {
+			e.preventDefault();
+
+			this.hideErrors();
+
+			var personalData = {
 				firstName: this.$('#firstName').val(),
 				lastName: this.$('#lastName').val(),
 				dateOfBirth: this.$('#dateOfBirth').val()
-			}, {
-				validate: true
-			});
-			//if (!res) this.render();
-		}
+			};
 
+			return(this.model.set(personalData, {
+				validate: true
+			}));
+		},
+
+		showErrors: function(errors) {
+			_.each(errors.validationError, function(error) {
+				//this.$('#'+error.name+'-error').text(error.message);
+				this.$('#' + error.name + '-container').addClass('has-error');
+			}, this);
+		},
+
+		hideErrors: function() {
+			//this.$('.error').text('');
+			this.$('.inputBlock').removeClass('has-error');
+		}
 	});
 
 	return PersonalDataView;

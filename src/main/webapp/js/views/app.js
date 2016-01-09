@@ -31,26 +31,22 @@ define([
 			this.personalData = new PersonalDataView();
 			this.$data.append(this.personalData.render().el);
 
-			this.accounts = new BankAccountCollection();
-			//this.listenTo(this.accounts, 'add', this.addViewAccount);
-			//this.listenTo(this.accounts, 'all', this.render);
+			this.accCollection = new BankAccountCollection();
+			this.listenTo(this.accCollection, 'add', this.addViewAccount);
+			//this.listenTo(this.accCollection, 'remove', this.);
 
 			this.appState = new AppState();
 			this.router = new Router(this.appState);
-
-
-			this.render;
 		},
 
-		moveNext: function() {
-			if (this.personalData.model.get('fieldsValid')) {
+		moveNext: function(e) {
+			if (this.personalData.submitData(e)) {
 				this.appState.set({
 					'state': 'next'
 				});
 				this.$el.html(this.templates['next']());
 				this.$accounts = this.$('#accounts-list');
 				this.addAccount();
-				this.render();
 			}
 		},
 
@@ -66,20 +62,23 @@ define([
 			if (state === 'success') {
 				this.$el.html(this.templates['success']());
 			}
-
+			console.log('Collection length: ' + this.accCollection.length);
 			return this;
 		},
 
 		addAccount: function() {
-			this.accounts.add({'order':this.accounts.length+1});
-			var view = new BankAccountView({model:this.accounts.last()});
-			this.$accounts.append(view.render());
+			this.accCollection.add({
+				order: (this.accCollection.length + 1)
+			});
+			console.log(this.accCollection.toJSON());
 		},
 
-		// addViewAccount: function() {
-		// 	var view = new BankAccountView({});
-		// 	this.$accounts.append(view.render().el);
-		// }
+		addViewAccount: function(acc) {
+			var view = new BankAccountView({
+				model: acc
+			});
+			this.$accounts.append(view.render());
+		}
 	});
 
 	return App;
