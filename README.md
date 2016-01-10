@@ -6,6 +6,8 @@ User opens up a registration route. First step is to input personal data. Next s
 filled properly. 
 Next step is to fill at least one bank account from. User can add extra account form but only if the previous are filled properly.
 Final step is available if all accounts are valid. User sees final object parsed to JSON format for further submission.
+User can navigate in browser histrory if he wants to change data.
+
 Field validation is based on regular expressions.
 
 Used technologies:
@@ -13,5 +15,12 @@ require js
 backbone
 underscore
 jquery
-
 Also bootstrap was used for better design.
+
+Backbone models: PersonalDataModel, BankAccountModel;
+Backbone views: PersonalDataView, BankAccountView, AppView;
+Backbone collections: BankAccountCollection;
+Router.
+
+
+
