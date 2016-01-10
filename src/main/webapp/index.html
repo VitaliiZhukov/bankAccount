@@ -3,24 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Bank application</title>
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="js/libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script data-main="js/main" src="node_modules/requirejs/require.js"></script>
+	<script data-main="js/main" src="js/libs/requirejs/require.js"></script>
 </head>
 <body>
 	<section id="app-container">
-		<div id="data-container">
+		<div id="data-container" class="block">
 			<div id="data-fieldset"></div>
 			<input type="button" id="data-next" value="Next" class="btn btn-default" disabled>
 		</div>
 
-		<div id="accounts-container" hidden>
+		<div id="accounts-container"  class="block" hidden>
 			<ul id="accounts-list"></ul>
-			<input type="button" id="accounts-add" value="Add account" class="btn btn-default" disabled>
+			<input type="button" id="accounts-add" value="Add bank account" class="btn btn-default" disabled>
 			<input type="button" id="accounts-save" value="Save" class="btn btn-default" disabled>
 		</div>
 
-		<div id="success-container" hidden>
+		<div id="success-container" class="block" hidden>
 			<h2>Success!</h2>	
 			<h3>Personal data and bank accounts are accepted.</h3>
 			<div id="success-json">

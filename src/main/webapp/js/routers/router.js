@@ -6,22 +6,29 @@ define([
 
     var Router = Backbone.Router.extend({
         routes: {
-            "": "start",
-            "!/": "start",
-            "!/success": "success",
+            '': 'data',
+            'data': 'data',
+            'accounts': 'accounts',
+            'success': 'success'
         },
 
-        start: function() {
-            appState.set({
-                state: "start"
-            });
+        data: function() {
+            $('.block').hide();
+            $('#data-container').show();
         },
 
+        accounts: function() {
+            $('.block').hide();
+            $('#accounts-container').show();
+        },
         success: function() {
-            appState.set({
-                state: "success"
-            });
+            $('.block').hide();
+            $('#success-container').show();
         },
+
+        initialize: function() {
+            Backbone.history.start(); // Set application start state.
+        }
     });
 
     return Router;

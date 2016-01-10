@@ -13,37 +13,19 @@ define([
 		template: _.template(personalDataTpl),
 
 		events: {
-			'blur #firstName, #lastName, #dateOfBirth': 'editData',
+			'keyup #firstName, #lastName': 'editData', // Check and edit data on keyup.
+			'blur #dateOfBirth': 'editData'			// Check and edit data on focus lost.
 		},
 
 		initialize: function() {
-			this.model = new PersonalDataModel();
-			//this.listenTo(this.model, 'change', this.render);
+			this.model = new PersonalDataModel(); // Create data model.
+			this.$el.html(this.template(this.model.toJSON())); // Build DOM element with template.
+
 			this.listenTo(this.model, 'invalid', this.showErrors);
 		},
 
-		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
-		},
-
-		// submitData: function(e) {
-		// 	e.preventDefault();
-
-		// 	this.hideErrors();
-
-		// 	var personalData = {
-		// 		firstName: this.$('#firstName').val(),
-		// 		lastName: this.$('#lastName').val(),
-		// 		dateOfBirth: this.$('#dateOfBirth').val()
-		// 	};
-
-		// 	return(this.model.set(personalData, {
-		// 		validate: true
-		// 	}));
-		// },
-
-		editData: function() {
+		// Try to set new attributes to data model.
+		editData: function(e) {
 			this.hideErrors();
 
 			var data = {
@@ -51,20 +33,21 @@ define([
 				lastName: this.$('#lastName').val(),
 				dateOfBirth: this.$('#dateOfBirth').val()
 			};
-			if (!this.model.set(data, {
-					validate: true
-				})) {
-				this.model.set(data);
-			};
+
+			this.model.set(data, {	// If validation is passed then set new attributes to model. Otherwise'invalid' evend called and errors will be displayed.
+				validate: true
+			});
 		},
 
+		// Show error messages at according inputs.
 		showErrors: function(errors) {
 			_.each(errors.validationError, function(error) {
-				this.$('#'+error.name+'-error').text(error.message);
+				this.$('#' + error.name + '-error').text(error.message);
 				this.$('#' + error.name + '-container').addClass('has-error');
 			}, this);
 		},
 
+		// Hide all error messages.
 		hideErrors: function() {
 			this.$('.error').text('');
 			this.$('.inputBlock').removeClass('has-error');
