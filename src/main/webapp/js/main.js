@@ -1,9 +1,9 @@
 require.config({
 	paths: {
-		'jquery': 'libs/jquery/dist/jquery.min',
-		'underscore': 'libs/underscore/underscore-min',
-		'backbone': 'libs/backbone/backbone-min',
-		'text': 'libs/requirejs-text/text'
+		'jquery': '../node_modules/jquery/dist/jquery.min',
+		'underscore': '../node_modules/backbone/node_modules/underscore/underscore-min',
+		'backbone': '../node_modules/backbone/backbone-min',
+		'text': '../node_modules/requirejs-text/text'
 	}
 });
 
