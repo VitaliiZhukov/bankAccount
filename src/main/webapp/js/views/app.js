@@ -11,10 +11,7 @@ define([
 
 		el: '#app-container',
 
-		// templates: {
-		// 	'success': _.template($('#success-container').html()),
-		// },
-		successTemplate: _.template($('#success-container').html()),
+		successTemplate: _.template($('#success-container').html()), 
 
 		events: {
 			'click #data-next': 'moveNext',
@@ -24,45 +21,57 @@ define([
 
 		initialize: function() {
 			console.log('Wahoo!');
-			this.$data = this.$('#data-fieldset');
 
 			this.personalData = new PersonalDataView();
-			this.$data.append(this.personalData.render().el);
+			this.$('#data-fieldset').html(this.personalData.render().el);
 
 			this.accCollection = new BankAccountCollection();
 			this.listenTo(this.accCollection, 'add', this.addViewAccount);
-			//this.listenTo(this.accCollection, 'remove', this.);
+			this.listenTo(this.accCollection, 'change', this.checkAccountsState);
+			this.listenTo(this.accCollection, 'remove', this.checkAccountsState);
+			this.listenTo(this.accCollection, 'add', this.checkAccountsState);
+			this.listenTo(this.personalData.model, 'change', this.checkDataState);
 
-			this.router = new Router(this.appState);
+			this.router = new Router();
+		},
+
+		checkAccountsState: function() {
+			var accountsValid = this.accCollection.checkValidAccounts();
+			this.$('#accounts-save').prop('disabled', !accountsValid);
+			this.$('#accounts-add').prop('disabled', !accountsValid);
+		},
+
+		checkDataState: function() {
+			this.$('#data-next').prop('disabled', !this.personalData.model.isValid);
 		},
 
 		moveNext: function(e) {
-			if (this.personalData.submitData(e)) {
-				this.$el.html(_.template($('#accounts-container').html()));
-				this.$accounts = this.$('#accounts-list');
-				this.addAccount();
-			}
-		},
-
-		save: function() {
-			if (this.accCollection.checkValidAccounts()) {
-				this.$el.html(this.successTemplate);
-			}
+			this.$el.html(_.template($('#accounts-container').html()));
+			this.addAccount();
 		},
 
 		addAccount: function() {
-			if (this.accCollection.checkValidAccounts()) {
-				this.accCollection.add({
-					order: (this.accCollection.nextOrder())
-				});
-			}
+			this.accCollection.add({
+				order: (this.accCollection.nextOrder())
+			});
 		},
 
 		addViewAccount: function(acc) {
 			var view = new BankAccountView({
 				model: acc
 			});
-			this.$accounts.append(view.render());
+			this.$('#accounts-list').append(view.render());
+		},
+
+		save: function() {
+			this.$el.html(this.successTemplate);
+
+			var result = {
+				personalData: this.personalData.model,
+				accounts: this.accCollection
+			};
+
+			this.$('#success-json').html(JSON.stringify(result));
 		}
 	});
 

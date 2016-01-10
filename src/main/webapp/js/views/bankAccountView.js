@@ -20,40 +20,46 @@ define([
 		},
 
 		initialize: function() {
-			//this.listenTo(this.model, 'change', this.render);
+			this.$el.html(this.template(this.model.toJSON()));
+
 			this.listenTo(this.model, 'destroy', this.remove); //remove this view after model destroying
 			this.listenTo(this.model, 'invalid', this.showErrors);
 		},
 
 		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
 			return this.$el;
 		},
 
 		editAccount: function() {
 			this.hideErrors();
-			this.model.set({
-				iban: this.$('#iban').val(),
-				bic: this.$('#bic').val()
-			}, {
-				validate: true
-			});
+
+			var account = {
+				iban: this.$('#iban').val().toUpperCase(),
+				bic: this.$('#bic').val().toUpperCase()
+			};
+			if (!this.model.set(account, {
+					validate: true
+				})) {
+				this.model.set(account);
+			};
 		},
 
 		showErrors: function(errors) {
 			_.each(errors.validationError, function(error) {
-				this.$('#'+error.name+'-error').text(error.message);
+				//this.$('#'+error.name+'-error').text(error.message);
 				this.$('#' + error.name + '-container').addClass('has-error');
 			}, this);
 		},
 
 		hideErrors: function() {
-			this.$('.error').text('');
+			//this.$('.error').text('');
 			this.$('.inputBlock').removeClass('has-error');
 		},
 
 		deleteAccount: function() {
-			this.model.destroy();
+			if (this.model.collection.length > 1) {
+				this.model.destroy();
+			}
 		}
 	});
 

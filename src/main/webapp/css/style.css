@@ -9,3 +9,4 @@ border-radius: 4px;
 }
 span{font-size:10px;}
 input[type="text"],input[type="date"]{text-align:center;}
+input:disabled{cursor: default !important;}

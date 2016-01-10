@@ -12,6 +12,10 @@ define([
 
 		template: _.template(personalDataTpl),
 
+		events: {
+			'blur #firstName, #lastName, #dateOfBirth': 'editData',
+		},
+
 		initialize: function() {
 			this.model = new PersonalDataModel();
 			//this.listenTo(this.model, 'change', this.render);
@@ -23,20 +27,35 @@ define([
 			return this;
 		},
 
-		submitData: function(e) {
-			e.preventDefault();
+		// submitData: function(e) {
+		// 	e.preventDefault();
 
+		// 	this.hideErrors();
+
+		// 	var personalData = {
+		// 		firstName: this.$('#firstName').val(),
+		// 		lastName: this.$('#lastName').val(),
+		// 		dateOfBirth: this.$('#dateOfBirth').val()
+		// 	};
+
+		// 	return(this.model.set(personalData, {
+		// 		validate: true
+		// 	}));
+		// },
+
+		editData: function() {
 			this.hideErrors();
 
-			var personalData = {
+			var data = {
 				firstName: this.$('#firstName').val(),
 				lastName: this.$('#lastName').val(),
 				dateOfBirth: this.$('#dateOfBirth').val()
 			};
-
-			return(this.model.set(personalData, {
-				validate: true
-			}));
+			if (!this.model.set(data, {
+					validate: true
+				})) {
+				this.model.set(data);
+			};
 		},
 
 		showErrors: function(errors) {
