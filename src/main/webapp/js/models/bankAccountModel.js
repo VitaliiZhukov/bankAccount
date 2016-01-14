@@ -38,7 +38,7 @@ define([
 				});
 			}
 
-			this.isValid = (!!attrs.iban) && (!!attrs.bic) && !(errors.length > 0);
+			this.isValid = (attrs.iban) && (attrs.bic) && !(errors.length > 0);
 
 			if (JSON.stringify(attrs) === JSON.stringify(this)) { // If attributes have the same values as model then initiate change event for updating application state.
 				this.trigger('change',this);
